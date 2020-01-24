@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Creating a ToDo list app in AngularJS</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <script src="todo.js"></script>
+    <link rel="stylesheet" href="todo.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <style>
+body  {
+  padding-left:550px;
+  background-image: url("Todo.png");
+  background-repeat: no-repeat;
+}
+</style>
+  </head>
+  <body ng-app="todoApp">
+    <h2 style="font-family:Arial"> <strong><u>To-Do</u></strong></h2>
+    <div ng-controller="TodoListController as todoList" class="container-fluid">
+      <span>{{todoList.remaining()}} of {{todoList.todos.length}} remaining</span>
+      <a href="" ng-click="todoList.archive()"><strong><mark><u>archive</u></mark></strong></a>
+      <ul>
+        <li ng-repeat="todo in todoList.todos">
+          <input type="checkbox" ng-model="todo.done">
+          <span class="done-{{todo.done}}">{{todo.text}}</span>
+        </li>
+      </ul>
+      <form ng-submit="todoList.addTodo()">
+        <input type="text" ng-model="todoList.todoText"  size="30"
+               placeholder="add new todo here">
+        <input class="btn-primary" type="submit" value="add">
+      </form>
+    </div>
+</body>
+</html>
